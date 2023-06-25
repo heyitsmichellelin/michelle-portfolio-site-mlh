@@ -36,5 +36,19 @@
         </div>
         <h1>{{ title }}</h1>
     </div>
+    <div class="education">
+        <h1>{{ titleEdu }}</h1>
+        <table>
+            {% for data in education_data %}
+                <tr>
+                    <h2>{{ data.school }}</h2>
+                    <h3>{{data.year}}</h3>
+                    <img src={{data.img}}>
+
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
 </body>
 </html>

@@ -6,16 +6,16 @@ load_dotenv()
 app = Flask(__name__)
 
 
+
 @app.route('/')
 def index():
-    return render_template('index.html', title="MLH Fellow", url=os.getenv("URL"))
-
-
-@app.route("/hobbies")
-def education():
-    education_data ={
+    education_data =[
         {"school": "Western University",
-         "img": ""
-         }
-    }
-    return render_template('index.html', title="Education", url=os.getenv("URL"))
+         "year": "2021-2025",
+         "img": "./static/img/western.jpg"
+        },
+        {"school": "Ivey Business School",
+         "year": "2023-2025",
+         "img": "./static/img/ivey.png"}
+    ]
+    return render_template('index.html',title="MLH Fellow", titleEdu="Education", education_data=education_data, url=os.getenv("URL"))
