@@ -18,4 +18,20 @@ def index():
          "year": "2023-2025",
          "img": "./static/img/ivey.png"}
     ]
+
+    experience_data = [
+        {"company":"",
+         "logo":"",
+         "year":"",
+         "description":""}
+    ]
     return render_template('index.html',title="MLH Fellow", titleEdu="Education", education_data=education_data, url=os.getenv("URL"))
+
+
+@app.route('/hobbies')
+def hobbies():
+    hobby_data = [
+        {"name":"",
+         "description":"",
+         "image":""}
+    ]
