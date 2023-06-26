@@ -1,0 +1,25 @@
+{
+    "hobbies" : [
+        {
+            "name" : "Painting",
+            "image" : "hobbyDataImages/everything.jpeg",        
+            "description" : "I have been painting since I was four years old. My family bonded over our mutual love for art"
+        },
+        {
+            "name" : "Reading",
+            "image" : "hobbyDataImages/book2.jpeg",                        
+            "description" : "I love reading. I read a lot of fiction and non-fiction. I also love reading about history and politics"
+        },
+        {
+            "name" : "Singing",
+            "image" : "hobbyDataImages/choir.webp",            
+            "description" : "I love singing. I have been singing since I was a child. I have been a part of my school choir and have performed at various events"
+        },
+        {
+            "name" : "Dancing",
+            "image" : "hobbyDataImages/dancing.jpg",            
+            "description" : "I took dancing classes for 5 years. I have performed at various events and have won many competitions"
+        }
+
+    ]
+}
