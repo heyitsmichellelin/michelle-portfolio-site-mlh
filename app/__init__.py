@@ -34,6 +34,7 @@ def get_hobbies_page():
         {"name":"",
          "description":"",
          "image":""}
+    ]
     return render_template('hobbies.html', title="Hobbies", url=os.getenv("URL"))
 
 @app.route('/travels')
