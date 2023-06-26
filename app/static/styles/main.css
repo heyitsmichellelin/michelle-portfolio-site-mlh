@@ -2,6 +2,10 @@ p, h1, h2, h3, h4, h5, h6, button {
     font-family: "Roboto", serif;
 }
 
+a {
+    text-decoration: none;
+}
+
 body {
     background-color: #f5f5f9;
     background-size: cover;
@@ -20,6 +24,13 @@ body {
     padding-top: 10px;
 }
 
+.nav-bar-items {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between
+}
+
 .nav-content .logo-touch-target {
     display: inline-flex;
     height: 60%;
@@ -28,13 +39,13 @@ body {
 
 .nav-content .nav-logo {
     height: 60px;
-    margin: auto;
 }
 
 .nav-logo {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
+    padding: 0em 2em 0em 2em;
 }
 
 .nav-logo img {
@@ -47,6 +58,27 @@ body {
     text-align: right;
     padding-top: 0px;
     padding-right: 0px;
+}
+
+.additional-nav-items {
+    display: inline-flex;
+    justify-content: margin-right;
+}
+
+.hobbies-button {
+    padding: 0em 2em 0em 2em;
+}
+
+.hobbies-button h2 {
+    color: white;
+}
+
+.travels-button h2 {
+    color: white;
+}
+
+.travels-button {
+    padding: 0em 2em 0em 0em;
 }
 
 .profile {
@@ -105,4 +137,10 @@ body {
     font-size: 50px;
     font-weight: 700;
     color: #1d539f;
+}
+
+.about{
+    text-align: center;
+    height: 320px;
+    margin-bottom: 50px;   
 }

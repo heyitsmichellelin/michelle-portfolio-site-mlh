@@ -28,16 +28,12 @@
                         <img src="./static/img/logo.svg" />
                     </div>
                     <div class="additional-nav-items">
-                        <a href='/hobbies'>
-                            <div class="hobbies-button">
-                                <h2>Hobbies</h2>
-                            </div>
-                        </a>
-                        <a href='/travels'>
-                            <div class="travels-button">
-                                <h2>Travels</h2>
-                            </div>
-                        </a>
+                        <div class="hobbies-button">
+                            <h2>Hobbies</h2>
+                        </div>
+                        <div class="travels-button">
+                            <h2>Travels</h2>
+                        </div>
                     </div>
                 </div>
             </a>
@@ -48,25 +44,7 @@
         <div id="profile-picture" class="profile-picture">
             <img src="./static/img/logo.jpg">
         </div>
-        <h1>{{ title }} </h1>
+        <h1>{{ title }}</h1>
     </div>
-    <div id="about_me" class="about">
-        <h1>ABOUT ME</h1>
-        <p>Hi there, I am an MLH fellow in Summer B group 5! I'm looking forward to a great summer with you all!!</p>
-    </div>
-    <div class="education">
-        <h1>{{ titleEdu }}</h1>
-        <table>
-            {% for data in education_data %}
-                <tr>
-                    <h2>{{ data.school }}</h2>
-                    <h3>{{data.year}}</h3>
-                    <img src={{data.img}}>
-
-                </tr>
-            {% endfor %}
-        </table>
-    </div>
-    
 </body>
 </html>

@@ -29,9 +29,13 @@ def index():
 
 
 @app.route('/hobbies')
-def hobbies():
+def get_hobbies_page():
     hobby_data = [
         {"name":"",
          "description":"",
          "image":""}
-    ]
+    return render_template('hobbies.html', title="Hobbies", url=os.getenv("URL"))
+
+@app.route('/travels')
+def get_travels_page():
+    return render_template('travels.html', title="Travels", url=os.getenv("URL"))
