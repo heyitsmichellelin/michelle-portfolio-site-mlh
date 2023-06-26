@@ -127,3 +127,9 @@ body {
     font-size: 50px;
     font-weight: 700;
 }
+
+.about{
+    text-align: center;
+    height: 320px;
+    margin-bottom: 50px;   
+}
