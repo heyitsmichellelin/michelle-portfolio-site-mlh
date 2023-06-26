@@ -127,3 +127,20 @@ body {
     font-size: 50px;
     font-weight: 700;
 }
+
+.education{
+    text-align: center;
+    height: 320px;
+    margin-bottom: 50px;
+}
+.education h1 {
+    font-size: 50px;
+    font-weight: 700;
+    color: #1d539f;
+}
+
+.about{
+    text-align: center;
+    height: 320px;
+    margin-bottom: 50px;   
+}
