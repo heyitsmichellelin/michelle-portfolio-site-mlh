@@ -14,9 +14,17 @@
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
 
-    <link lang='sass' rel="stylesheet" href="./static/styles/main.css">
+    <link lang='sass' rel="stylesheet" href= "{{ url_for('static',filename='styles/hobbies.css') }}">
+    <link lang='sass' rel="stylesheet" href= "{{ url_for('static',filename='styles/main.css') }}">
     <link rel='icon' href='./static/img/favicon.ico' type='image/x-icon' />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
     <title>{{ title }}</title>
+
+
 </head>
 
 <body>
@@ -46,5 +54,31 @@
         </div>
         <h1>{{ title }}</h1>
     </div>
+
+    <div class="cards">
+
+        {% for hobby in data %}        
+            <article class="card">    
+
+                <img
+                class="card__background"
+                src="{{ url_for('static',filename='img/'+hobby.image) }}"
+                alt="Photo of Cartagena's cathedral at the background and some colonial style houses"
+                width="1920"
+                height="2193"
+                />
+                <div class="card__content | flow">
+                <div class="card__content--container | flow">
+                    <h2 class="card__title">{{hobby.name}}</h2>
+                    <p class="card__description">
+                    {{ hobby.description }}
+                    </p>
+                </div>          
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+
+    
 </body>
 </html>
