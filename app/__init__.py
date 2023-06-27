@@ -16,7 +16,12 @@ def index():
         },
         {"school": "Ivey Business School",
          "year": "2023-2025",
-         "img": "./static/img/ivey.png"}
+         "img": "./static/img/ivey.png"
+         },
+        {"school": "University of California, Irvine",
+         "year": "2021-24",
+          "img": "./static/img/uci_logo.png"
+        }
     ]
 
     experience_data = [
