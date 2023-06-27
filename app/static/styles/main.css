@@ -127,3 +127,14 @@ body {
     font-size: 50px;
     font-weight: 700;
 }
+
+.map {
+    width: 75%;
+    margin: auto;
+    padding: 1em 0em 3em 0em;
+}
+
+.travels-description {
+    display: flex;
+    justify-content: center;
+}

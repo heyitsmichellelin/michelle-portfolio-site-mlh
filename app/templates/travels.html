@@ -22,21 +22,25 @@
 <body>
     <header class="nav-bar">
         <div class="nav-content">
-            <a href="/">
-                <div class="nav-bar-items">
-                    <div class="nav-logo">
+            <div class="nav-bar-items">
+                <div class="nav-logo">
+                    <a href="/">
                         <img src="./static/img/logo.svg" />
-                    </div>
-                    <div class="additional-nav-items">
+                    </a>
+                </div>
+                <div class="additional-nav-items">
+                    <a href='/hobbies'>
                         <div class="hobbies-button">
                             <h2>Hobbies</h2>
                         </div>
+                    </a>
+                    <a href='/travels'>
                         <div class="travels-button">
                             <h2>Travels</h2>
                         </div>
-                    </div>
+                    </a>
                 </div>
-            </a>
+            </div>
         </div>
     </header>
 
@@ -45,6 +49,24 @@
             <img src="./static/img/logo.jpg">
         </div>
         <h1>{{ title }}</h1>
+    </div>
+
+    <div class="travels-section">
+        <div class="travels-description">
+            <p>Traveling to new places is one of my favorite past times and I'm always wondering where my next destination is. Here are a few of the places I've visited!</p>
+        </div>
+        <div class="map">
+            <iframe src="https://map.proxi.co/r/-5pUZPWVYTWI7HkVi4kV" 
+                    allow="geolocation; clipboard-write" 
+                    width="100%" 
+                    height="625px" 
+                    style="border-width: 0px;" 
+                    allowfullscreen>
+            </iframe> 
+            <div style="font-family: Sans-Serif; font-size:12px;color:#000000;opacity:0.5; padding-top: 5px;"> 
+                powered by <a href="https://www.proxi.co/?utm_source=poweredbyproxi" style="color:#000000" target="_blank">Proxi</a> 
+            </div>
+        </div>
     </div>
 </body>
 </html>
