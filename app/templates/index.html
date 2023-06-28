@@ -67,6 +67,25 @@
             {% endfor %}
         </table>
     </div>
+
+    <div class="experience">
+        
+        <h1>{{ titleExp }}</h1>
+        
+        <div class="details">
+            {% for data in experience %}
+                <div>
+                    <h2>{{ data.company }} : {{ data.title }}</h2>
+                    <img src={{data.logo}}>
+                    <h4>{{ data.date }}</h4>
+                    <p>{{ data.description }}</p>
+                    
+                </div>                
+
+            {% endfor %}
+            </div>
+
+    </div>
     
 </body>
 </html>

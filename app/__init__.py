@@ -25,12 +25,26 @@ def index():
     ]
 
     experience_data = [
-        {"company":"",
-         "logo":"",
-         "year":"",
-         "description":""}
+        {"company":"Vibemap",
+            "title" : "Development Intern",
+            "logo":"./static/img/experienceImages/vibemap.jpeg",            
+            "date":"May 14, 2023 - Present",
+            "description":"Worked as a development intern for the vibemap startup. Learned skills in React, React Native, and Wordpress."},
+        
+        {"company":"MLH Fellowship",
+            "title" : "Site Reliability Engineering Fellow",
+            "logo":"./static/img/experienceImages/mlh.png",
+            "date": "June 04, 2021 - Present",
+            "description":"Worked as a fellow for the MLH Fellowship. Learned skills in React, Flask, and Python."},
+        
+        {"company":"Western University",
+            "title" : "Programming Peer tutor",
+            "logo":"./static/img/western.jpg",
+            "date":"September 2021 - Present",
+            "description":"Worked as a programming peer tutor at Western University. Learned skills in Java, Python, and C++."},
+
     ]
-    return render_template('index.html',title="MLH Fellow", titleEdu="Education", education_data=education_data, url=os.getenv("URL"))
+    return render_template('index.html',title="MLH Fellow", titleEdu="Education", education_data=education_data, titleExp="Experience" ,  experience=experience_data, url=os.getenv("URL"))
 
 
 @app.route('/hobbies')
