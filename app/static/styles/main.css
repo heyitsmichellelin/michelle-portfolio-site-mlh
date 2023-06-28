@@ -140,7 +140,30 @@ body {
 }
 
 .about{
-    text-align: center;
-    height: 320px;
+    text-align: center;    
     margin-bottom: 50px;   
+}
+
+.experience{
+    text-align: center;
+    margin-top: 850px;
+    height: 320px;
+    margin-bottom: 50px;
+}
+
+.experience h1 {
+    font-size: 50px;
+    font-weight: 700;
+    color: #1d539f;
+}
+
+.details>div>p {
+    width: 200px;
+    display: contents;
+    text-align: center !important;
+    align-self: center;
+}
+
+img {
+    border-radius: 20%;
 }
