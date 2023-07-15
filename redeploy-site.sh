@@ -1,17 +1,23 @@
 #!/bin/bash
 
-# Step 1: Kill all existing tmux sessions
-tmux kill-session -a
+tmux kill-server
 
-# Step 2: Change to the project folder
-cd /path/to/project/folder
+cd portfolio-site-mlh/
 
-# Step 3: Fetch and reset the git repository
 git fetch && git reset origin/main --hard
 
-# Step 4: Enter the python virtual environment and install dependencies
-source /path/to/virtualenv/bin/activate
+git pull
+
+source python3-virtualenv/bin/activate
+
 pip install -r requirements.txt
 
-# Step 5: Start a new detached Tmux session and run Flask server
-tmux new-session -d -s flask-session 'cd /path/to/project/folder && source /path/to/virtualenv/bin/activate && flask run'
+tmux new -d -s portfolio
+
+tmux ls
+
+tmux send-keys -t portfolio.0 "source python3-virtualenv/bin/activate" ENTER
+
+tmux send-keys -t portfolio.0 "export FLASK_ENV=development" ENTER
+
+tmux send-keys -t portfolio.0 "flask run --host=0.0.0.0" ENTER
