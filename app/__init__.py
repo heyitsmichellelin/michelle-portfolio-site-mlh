@@ -106,6 +106,6 @@ def get_time_line_post():
 
 @app.route('/api/timeline_post/<id>', methods=['DELETE'])
 def delete_time_line_post(id):
-    query=TimelinePost.delete().where(TimelinePost.id==id)
+    query=TimelinePost.delete().where(TimelinePost.id=={id})
     query.execute()
     return "Post was successfully deleted"

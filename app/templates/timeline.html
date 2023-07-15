@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div class='content-section'>
-                    <input type="text" name="content" placeholder="Write me a message :)"/>
+                    <input id="message-box" type="text" name="content" placeholder="Write me a message :)"/>
                 </div>
                 <div class='submit-section'>
                     <button type="submit"><h4>Submit</h4></button>
@@ -91,8 +91,44 @@
                 body: payload,
                 })
                 .then(res => res.json())
+                window.location.reload();
             })
         </script>
+        <div class='timeline'>
+            <table id="posts"></table>
+            <script>
+                async function getPosts(url) {
+                    const response = await fetch(url);
+                    var data = await response.json();
+                    console.log(data);
+                    create_timeline(data);
+                }
+    
+                getPosts('/api/timeline_post');
+    
+                function create_timeline(data) {
+                    let titles = 
+                    `<tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Created on</th>
+                        <th>Content</th>
+                    </tr>`;
+    
+                    for (let item of data["timeline_posts"]) {
+                        titles += `<tr>
+                            <td>${item.name} </td>
+                            <td>${item.email}</td>
+                            <td>${item.created_at}</td>
+                            <td>${item.content}</td>         
+                        </tr>`;
+                        console.log(item.name);
+                    }
+                    document.getElementById("posts").innerHTML = titles;
+                }
+
+            </script>
+        </div>
     </div>
 </body>
 </html>

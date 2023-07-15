@@ -52,6 +52,14 @@ textarea {
     resize: none;
 }
 
+table {
+    border-spacing: 8px;
+}
+
+td {
+    padding: 10px 0px 10px 50px;
+}
+
 .nav-bar {
     width: 100%;
     display: inline-block;
@@ -193,7 +201,7 @@ textarea {
 .timeline-form {
     color: #434343;
     width: 50em;
-    height: 27em;
+    height: 16em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -202,18 +210,26 @@ textarea {
     box-shadow: 2px 3px #CDCDCD;
     padding-top: 1em;
     padding-bottom: 1em;
-    margin: 0em 3em 0em 3em;
+    margin: 0em 3em 5em 3em;
 }
 
 .timeline-section {
     display: flex;
     justify-content: center;
     padding-bottom: 3em;
+    flex-direction: column;
+    align-items: center;
 }
 
 .content-section {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
+}
+
+#message-box {
+    display: flex;
+    width: 53.5em;    
 }
 
 .submit-section {
