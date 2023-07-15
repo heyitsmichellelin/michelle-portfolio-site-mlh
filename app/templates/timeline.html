@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:title" content="Personal Portfolio">
+    <meta property="og:description" content="My Personal Portfolio">
+    <meta property="og:url" content="{{ url }}">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <link lang='sass' rel="stylesheet" href="./static/styles/main.css">
+    <link rel='icon' href='./static/img/favicon.ico' type='image/x-icon' />
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <header class="nav-bar">
+        <div class="nav-content">
+            <div class="nav-bar-items">
+                <div class="nav-logo">
+                    <a href="/">
+                        <img src="./static/img/logo.svg" />
+                    </a>
+                </div>
+                <div class="additional-nav-items">
+                    <a href='/hobbies'>
+                        <div class="hobbies-button">
+                            <h2>Hobbies</h2>
+                        </div>
+                    </a>
+                    <a href='/travels'>
+                        <div class="travels-button">
+                            <h2>Travels</h2>
+                        </div>
+                    </a>
+                    <a href='/timeline'>
+                        <div class="timeline-button">
+                            <h2>Timeline</h2>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="profile">
+        <div id="profile-picture" class="profile-picture">
+            <img src="./static/img/logo.jpg">
+        </div>
+        <h1>{{ title }}</h1>
+    </div>
+
+    <div class="timeline-section">
+        <div class="timeline-form">
+            <h3>Add your message to my timeline!</h3>
+            <form id="form">
+                <div class='name-email-section'>
+                    <div class="name-section">
+                        <label>Name</label>
+                        <input type="text" name="name" />
+                    </div>
+                    <div class="email-section">
+                        <label>Email</label>
+                        <input type="text" name="email" />
+                    </div>
+                </div>
+                <div class='content-section'>
+                    <input type="text" name="content" placeholder="Write me a message :)"/>
+                </div>
+                <div class='submit-section'>
+                    <button type="submit"><h4>Submit</h4></button>
+                </div>
+            </form>
+        </div>
+        <script>
+            const form = document.getElementById('form');
+            form.addEventListener('submit', function(e) {
+                // Prevent default behavior:
+                e.preventDefault();
+                // Create payload as new FormData object:
+                const payload = new FormData(form);
+                // Post the payload using Fetch:
+                fetch('/api/timeline_post', {
+                method: 'POST',
+                body: payload,
+                })
+                .then(res => res.json())
+            })
+        </script>
+    </div>
+</body>
+</html>
