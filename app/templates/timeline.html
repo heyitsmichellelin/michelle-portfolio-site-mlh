@@ -59,7 +59,7 @@
     <div class="timeline-section">
         <div class="timeline-form">
             <h3>Add your message to my timeline!</h3>
-            <form>
+            <form id="form">
                 <div class='name-email-section'>
                     <div class="name-section">
                         <label>Name</label>
@@ -71,14 +71,28 @@
                     </div>
                 </div>
                 <div class='content-section'>
-                    <textarea rows='12' cols='95' placeholder="Write me a message :)"></textarea>
+                    <input type="text" name="content" placeholder="Write me a message :)"/>
                 </div>
                 <div class='submit-section'>
                     <button type="submit"><h4>Submit</h4></button>
                 </div>
             </form>
         </div>
-        
+        <script>
+            const form = document.getElementById('form');
+            form.addEventListener('submit', function(e) {
+                // Prevent default behavior:
+                e.preventDefault();
+                // Create payload as new FormData object:
+                const payload = new FormData(form);
+                // Post the payload using Fetch:
+                fetch('/api/timeline_post', {
+                method: 'POST',
+                body: payload,
+                })
+                .then(res => res.json())
+            })
+        </script>
     </div>
 </body>
 </html>
