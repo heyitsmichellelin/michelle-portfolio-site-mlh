@@ -1,11 +1,32 @@
 import os
 from flask import Flask, render_template, request, json
+
+from peewee import *
+from playhouse.shortcuts import model_to_dict
+import datetime
+
 from dotenv import load_dotenv
 
 load_dotenv()
 app = Flask(__name__)
 
+mydb = MySQLDatabase( os.getenv("MYSQL_DATABASE"),
+                        host=os.getenv("MYSQL_HOST"),
+                        port=3306,
+                        user=os.getenv("MYSQL_USER"),
+                        passwd=os.getenv("MYSQL_PASSWORD"))
 
+class TimelinePost(Model):
+    name = CharField()
+    email = CharField()
+    content = CharField()
+    created_at = DateTimeField(default=datetime.datetime.now)
+
+    class Meta:
+        database = mydb
+
+mydb.connect()
+mydb.create_tables([TimelinePost])
 
 @app.route('/')
 def index():
@@ -59,3 +80,28 @@ def get_hobbies_page():
 @app.route('/travels')
 def get_travels_page():
     return render_template('travels.html', title="Travels", url=os.getenv("URL"))
+
+
+@app.route('/api/timeline_post', methods=['POST'])
+def create_timeline_post():
+    name = request.form.get('name')
+    email = request.form.get('email')
+    content = request.form.get('content')
+    timeline_post = TimelinePost.create(name=name, email=email, content=content)
+
+    return model_to_dict(timeline_post)
+
+@app.route('/api/timeline_post', methods=['GET'])
+def get_timeline_posts():
+    return {
+        'timeline_posts': [
+            model_to_dict(p)
+            for p in 
+            TimelinePost.select().order_by(TimelinePost.created_at.desc())
+        ]
+    }
+
+@app.route('/api/timeline_post/<int:timeline_post_id>', methods=['DELETE'])
+def delete_timeline_post(timeline_post_id):
+    TimelinePost.delete_by_id(timeline_post_id)
+    return {}
