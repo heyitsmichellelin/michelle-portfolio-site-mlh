@@ -81,15 +81,6 @@ body {
     padding: 0em 2em 0em 0em;
 }
 
-.timeline-button {
-    padding: 0em 2em 0em 0em;
-}
-
-.timeline-button h2 {
-    color: white;
-}
-
-
 .profile {
     background-color: #1d539f !important;
     text-align: center;
@@ -143,47 +134,31 @@ body {
     padding: 1em 0em 3em 0em;
 }
 
-.travels-description {
+img {
+    border-radius: 20%;
+}
+
+.container {
     display: flex;
+    flex-direction: row;
+}
+
+.form {
+    text-align: center;
+    width: 40%; 
+    align-items: center;    
     justify-content: center;
 }
 
-.education{
-    text-align: center;
-    height: 320px;
-    margin-bottom: 50px;
-}
-.education h1 {
-    font-size: 50px;
-    font-weight: 700;
-    color: #1d539f;
+.form input {
+    width: 80%;
+    padding: 12px 20px;
+    padding-left: 20px;    
+    margin: 8px;
+    margin-left: 20px;
+    box-sizing: border-box;
 }
 
-.about{
-    text-align: center;    
-    margin-bottom: 50px;   
-}
-
-.experience{
-    text-align: center;
-    margin-top: 850px;
-    height: 320px;
-    margin-bottom: 50px;
-}
-
-.experience h1 {
-    font-size: 50px;
-    font-weight: 700;
-    color: #1d539f;
-}
-
-.details>div>p {
-    width: 200px;
-    display: contents;
-    text-align: center !important;
-    align-self: center;
-}
-
-img {
-    border-radius: 20%;
+.subject {
+    height: 80px;
 }

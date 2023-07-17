@@ -81,12 +81,26 @@ def get_hobbies_page():
 def get_travels_page():
     return render_template('travels.html', title="Travels", url=os.getenv("URL"))
 
+@app.route('/timeline')
+def timeline():
+
+    all_posts = {
+        "all_posts": [
+            model_to_dict(p)
+            for p in 
+            TimelinePost.select().order_by(TimelinePost.created_at.desc())
+        ]
+    }
+
+    return render_template('timeline.html', title="Timeline", data=all_posts["all_posts"])
 
 @app.route('/api/timeline_post', methods=['POST'])
 def create_timeline_post():
     name = request.form.get('name')
     email = request.form.get('email')
     content = request.form.get('content')
+
+    # timeline_post = TimelinePost(name=name, email=email, content=content)
     timeline_post = TimelinePost.create(name=name, email=email, content=content)
 
     return model_to_dict(timeline_post)
