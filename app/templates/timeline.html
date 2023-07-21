@@ -63,15 +63,15 @@
                 <div class='name-email-section'>
                     <div class="name-section">
                         <label>Name</label>
-                        <input type="text" name="name" />
+                        <input type="text" name="name" id="name"/>
                     </div>
                     <div class="email-section">
                         <label>Email</label>
-                        <input type="text" name="email" />
+                        <input type="text" name="email" id="email"/>
                     </div>
                 </div>
                 <div class='content-section'>
-                    <input id="message-box" type="text" name="content" placeholder="Write me a message :)"/>
+                    <input id="message-box" type="text" name="content" id="content" placeholder="Write me a message :)"/>
                 </div>
                 <div class='submit-section'>
                     <button type="submit"><h4>Submit</h4></button>
@@ -79,10 +79,22 @@
             </form>
         </div>
         <script>
-            const form = document.getElementById('form');
             form.addEventListener('submit', function(e) {
                 // Prevent default behavior:
                 e.preventDefault();
+                // Verify name is not empty
+                let inputName = document.getElementById("name").value;
+                let inputEmail = document.getElementById("email").value;
+                let inputContent = document.getElementById("content").value;
+                if (inputName.length() === 0) {
+                    console.log("Invalid name");
+                }
+                elif (inputEmail.length() === 0) {
+                    console.log("Invalid email");
+                }
+                elif (inputContent.length() === 0) {
+                    console.log("Invalid content");
+                }
                 // Create payload as new FormData object:
                 const payload = new FormData(form);
                 // Post the payload using Fetch:
@@ -100,7 +112,6 @@
                 async function getPosts(url) {
                     const response = await fetch(url);
                     var data = await response.json();
-                    console.log(data);
                     create_timeline(data);
                 }
     
