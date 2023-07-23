@@ -1,6 +1,7 @@
 import datetime
 import os
-from flask import Flask, render_template, request, json, jsonify
+import re
+from flask import Flask, render_template, request, json, jsonify, make_response
 from dotenv import load_dotenv
 from peewee import *
 from playhouse.shortcuts import model_to_dict
@@ -95,12 +96,18 @@ def post_time_line_post():
     email = request.form.get('email')
     content = request.form.get('content')
     
+    emailRegex = r'^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$'
+    
     if name is None:
-        return jsonify({'error': 'Missing name'}), 400
+        return make_response(jsonify({"error": "Invalid name"}), 400)
     elif email is None:
-        return jsonify({'error': 'Missing email'}), 400
+        return make_response(jsonify({'error': 'Invalid email'}), 400)
     elif content is None:
-        return jsonify({'error': 'Missing content'}), 400
+        return make_response(jsonify({'error': 'Invalid content'}), 400)
+    elif len(content.strip()) == 0:
+        return make_response(jsonify({'error': 'Invalid content'}), 400)
+    elif not re.fullmatch(emailRegex, str(email)):
+        return make_response(jsonify({'error': 'Invalid email'}), 400)
     else:
         timeline_post = TimelinePost.create(name=name, email=email, content=content)
 

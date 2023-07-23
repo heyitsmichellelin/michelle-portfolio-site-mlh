@@ -76,6 +76,7 @@ class AppTestCase(unittest.TestCase):
                                     data={"email": "john@example.com",
                                           "content": "Hello world, I'm John!"})
         assert response.status_code == 400
+        d = response.get_json()
         html = response.get_data(as_text=True)
         assert "Invalid name" in html
         
