@@ -51,7 +51,7 @@
 
     <div class="profile">
         <div id="profile-picture" class="profile-picture">
-            <img src="./static/img/logo.jpg">
+            <img src="./static/img/michellelin.jpg">
         </div>
         <h1>{{ title }}</h1>
     </div>
@@ -71,10 +71,15 @@
                     </div>
                 </div>
                 <div class='content-section'>
-                    <input id="message-box" type="text" name="content" id="content" placeholder="Write me a message :)"/>
+                    <input type="text" name="content" id="content" placeholder="Write me a message :)"/>
                 </div>
-                <div class='submit-section'>
-                    <button type="submit"><h4>Submit</h4></button>
+                <div class='bottom-row'>
+                    <div class='error-section'>
+                        <p id='error'></p>
+                    </div>
+                    <div class='submit-section'>
+                        <button type="submit"><h4>Submit</h4></button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -82,28 +87,50 @@
             form.addEventListener('submit', function(e) {
                 // Prevent default behavior:
                 e.preventDefault();
-                // Verify name is not empty
+                // Input validation
                 let inputName = document.getElementById("name").value;
                 let inputEmail = document.getElementById("email").value;
                 let inputContent = document.getElementById("content").value;
-                if (inputName.length() === 0) {
-                    console.log("Invalid name");
+
+                let nameRegex = /^[a-zA-Z\s]+$/gm;
+                let emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+                if (!inputName.match(nameRegex)) {
+                    document.getElementById("error").innerText = "Invalid name"; 
                 }
-                elif (inputEmail.length() === 0) {
-                    console.log("Invalid email");
+                else if (!inputEmail.match(emailRegex)) {
+                    document.getElementById("error").innerText = "Invalid email";
                 }
-                elif (inputContent.length() === 0) {
-                    console.log("Invalid content");
+                else if (inputContent.length === 0) {
+                    document.getElementById("error").innerText = "Invalid content";
                 }
-                // Create payload as new FormData object:
-                const payload = new FormData(form);
-                // Post the payload using Fetch:
-                fetch('/api/timeline_post', {
-                method: 'POST',
-                body: payload,
-                })
-                .then(res => res.json())
-                window.location.reload();
+                else {
+                    // Create payload as new FormData object:
+                    const payload = new FormData(form);
+                    try {
+                        // Post the payload using Fetch:
+                        fetch('/api/timeline_post', {
+                        method: 'POST',
+                        body: payload,
+                        })
+                        .then(res => {
+                            if (res.status == 400) {
+                                if (res[error] == "Missing name") {
+                                    document.getElementById("error").innerText = "Invalid name"; 
+                                }
+                            } else {
+                                res.json();
+                            }
+                        })
+                        console.log(res.status_code);
+                        // window.location.reload();
+                    } catch (e) {
+                        console.log(e);
+                        if (e == "Missing name") {
+                            document.getElementById("error").innerText = "Invalid name"; 
+                        }
+                    }
+                };
             })
         </script>
         <div class='timeline'>

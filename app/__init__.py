@@ -1,6 +1,6 @@
 import datetime
 import os
-from flask import Flask, render_template, request, json
+from flask import Flask, render_template, request, json, jsonify
 from dotenv import load_dotenv
 from peewee import *
 from playhouse.shortcuts import model_to_dict
@@ -91,12 +91,20 @@ def timeline():
 
 @app.route('/api/timeline_post', methods=['POST'])
 def post_time_line_post():
-    name = request.form['name']
-    email = request.form['email']
-    content = request.form['content']
-    timeline_post = TimelinePost.create(name=name, email=email, content=content)
+    name = request.form.get('name')
+    email = request.form.get('email')
+    content = request.form.get('content')
     
-    return model_to_dict(timeline_post)   
+    if name is None:
+        return jsonify({'error': 'Missing name'}), 400
+    elif email is None:
+        return jsonify({'error': 'Missing email'}), 400
+    elif content is None:
+        return jsonify({'error': 'Missing content'}), 400
+    else:
+        timeline_post = TimelinePost.create(name=name, email=email, content=content)
+
+        return model_to_dict(timeline_post)   
 
 @app.route('/api/timeline_post', methods=['GET'])
 def get_time_line_post():
