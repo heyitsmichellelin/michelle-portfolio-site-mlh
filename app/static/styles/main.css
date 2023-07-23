@@ -227,15 +227,28 @@ td {
     margin-top: 20px;
 }
 
-#message-box {
+#content {
     display: flex;
     width: 53.5em;    
+}
+
+.error-section {
+    display: flex;
+    align-items: center;
+    width: 40em;
+    justify-content: end;
+    color: rgb(220, 68, 68);
 }
 
 .submit-section {
     display: flex;
     justify-content: flex-end;
     margin-right: 30px;
+}
+
+.bottom-row {
+    display: flex;
+    justify-content: space-between;
 }
 
 .education{
