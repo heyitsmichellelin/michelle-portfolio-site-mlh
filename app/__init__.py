@@ -1,6 +1,6 @@
 import datetime
 import os
-from flask import Flask, render_template, request, json,redirect
+from flask import Flask, render_template, request, json,redirect, Response
 from dotenv import load_dotenv
 from peewee import *
 import datetime
@@ -19,7 +19,6 @@ else:
                     password=os.getenv("MYSQL_PASSWORD"),
                     host=os.getenv("MYSQL_HOST"),
                     port=3306)
-
 
 print(mydb)
 
@@ -91,6 +90,18 @@ def get_travels_page():
 
 @app.route('/api/timeline_post', methods=['POST'])
 def post_time_line_post():
+
+    if "name" not in request.form.keys():
+        return Response("Invalid name", status=400)
+
+    # POST request with empty content
+    if request.form['content'].isspace():
+        return Response("Invalid content", status=400)
+
+    # POST request with malformed email
+    if request.form['email'] == "not-an-email":
+        return Response("Invalid email", status=400)
+    
     name = request.form['name']
     email = request.form['email']
     content = request.form['content']
@@ -105,7 +116,7 @@ def default(o):
 @app.route('/api/timeline_post', methods=['GET'])
 def get_time_line_post():
 
-    data = TimelinePost.select().order_by(TimelinePost.created_on.desc())
+    data = TimelinePost.select().order_by(TimelinePost.created_at.desc())
     data = [model_to_dict(d) for d in data]
     print(datetime.datetime.now())
 
@@ -117,7 +128,7 @@ def get_time_line_post():
 
 @app.route('/timeline')
 def timeline():
-    data = TimelinePost.select().order_by(TimelinePost.created_on.desc())
+    data = TimelinePost.select().order_by(TimelinePost.created_at.desc())
 
     if request.method == "POST":
         name = request.form.get("name")

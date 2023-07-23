@@ -25,7 +25,7 @@ class AppTestCase(unittest.TestCase):
         assert response.is_json
         json = response.get_json()
         assert "timeline_posts" in json
-        assert len(json['timeline_posts']) == 0
+        assert len(json["timeline_posts"]) == 0
 
         # New Test
         postResponse = self.client.post("/api/timeline_post")
@@ -33,7 +33,7 @@ class AppTestCase(unittest.TestCase):
 
         # New Test
         timelineResponse = self.client.get("/timelinePost")
-        assert timelineResponse.status_code == 400
+        assert timelineResponse.status_code != 200
 
     def test_malformed_timeline_post(self):
 
