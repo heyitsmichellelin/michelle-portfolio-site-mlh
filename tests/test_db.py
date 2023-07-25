@@ -4,7 +4,7 @@ from peewee import *
 from app import TimelinePost
 from app import get_timeline_posts
 from playhouse.shortcuts import model_to_dict 
-from flask_cors import CORS
+
 
 MODELS= [TimelinePost]
 
