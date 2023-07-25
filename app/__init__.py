@@ -4,17 +4,29 @@ from flask import Flask, render_template, request, json
 from peewee import *
 from playhouse.shortcuts import model_to_dict
 import datetime
+import jsonify
 
 from dotenv import load_dotenv
 
 load_dotenv()
 app = Flask(__name__)
 
-mydb = MySQLDatabase( os.getenv("MYSQL_DATABASE"),
-                        host=os.getenv("MYSQL_HOST"),
-                        port=3306,
-                        user=os.getenv("MYSQL_USER"),
-                        passwd=os.getenv("MYSQL_PASSWORD"))
+
+
+
+if os.getenv('TESTING') == 'true':
+    print('Running in testing mode')
+    mydb = SqliteDatabase('file:memory?mode=memory&cache=shared',
+                          uri=True)
+    
+else:
+    mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
+                user=os.getenv("MYSQL_USER"),
+                password=os.getenv("MYSQL_PASSWORD"),
+                host=os.getenv("MYSQL_HOST"),
+                port= 3306
+
+)
 
 class TimelinePost(Model):
     name = CharField()
@@ -95,14 +107,23 @@ def timeline():
     return render_template('timeline.html', title="Timeline", data=all_posts["all_posts"])
 
 @app.route('/api/timeline_post', methods=['POST'])
-def create_timeline_post():
-    name = request.form.get('name')
-    email = request.form.get('email')
-    content = request.form.get('content')
+def post_time_line_post():
+    form_data = request.form.to_dict()
 
-    # timeline_post = TimelinePost(name=name, email=email, content=content)
-    timeline_post = TimelinePost.create(name=name, email=email, content=content)
+    if 'name' not in form_data:
+        
+        return "invalid name", 400
 
+
+    if ('email' not in form_data) or "@" not in form_data['email'] or ".com" not in form_data['email']:
+        return "invalid email", 400
+    
+    
+    if 'content' not in form_data:
+        return "invalid content", 400
+
+
+    timeline_post = TimelinePost.create(name = form_data['name'], email = form_data['email'], content = form_data['content'])
     return model_to_dict(timeline_post)
 
 @app.route('/api/timeline_post', methods=['GET'])
