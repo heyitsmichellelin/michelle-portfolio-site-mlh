@@ -20,7 +20,7 @@ services:
 
   nginx:
     container_name: nginx
-    image: jonasal/nginx-certbot
+    image: jonasal/nginx-certbot:latest
     restart: always
     environment:
       - CERTBOT_EMAIL=name@example.com
