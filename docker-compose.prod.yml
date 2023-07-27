@@ -11,7 +11,7 @@ services:
 
   mysql:
     container_name: mysql
-    image: mysql
+    image: mariadb
     restart: always
     env_file:
       - .env
@@ -20,7 +20,7 @@ services:
 
   nginx:
     container_name: nginx
-    image: jonasal/nginx-certbot:latest
+    image: jonasal/nginx-certbot
     restart: always
     environment:
       - CERTBOT_EMAIL=name@example.com
