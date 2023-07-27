@@ -36,39 +36,27 @@ mydb.create_tables([TimelinePost])
 @app.route('/')
 def index():
     education_data =[
-        {"school": "Western University",
-         "year": "2021-2025",
-         "img": "./static/img/western.jpg"
-        },
-        {"school": "Ivey Business School",
-         "year": "2023-2025",
-         "img": "./static/img/ivey.png"
-         },
         {"school": "University of California, Irvine",
          "year": "2021-24",
           "img": "./static/img/uci_logo.png"
-        }
+        },
+        {"school": "San Joaquin Delta College",
+         "year": "2017-2021",
+         "img": "./static/img/sjdc_logo.png"
+         }
     ]
 
     experience_data = [
-        {"company":"Vibemap",
-            "title" : "Development Intern",
-            "logo":"./static/img/experienceImages/vibemap.jpeg",            
-            "date":"May 14, 2023 - Present",
-            "description":"Worked as a development intern for the vibemap startup. Learned skills in React, React Native, and Wordpress."},
-        
         {"company":"MLH Fellowship",
             "title" : "Site Reliability Engineering Fellow",
             "logo":"./static/img/experienceImages/mlh.png",
             "date": "June 04, 2021 - Present",
             "description":"Worked as a fellow for the MLH Fellowship. Learned skills in React, Flask, and Python."},
-        
-        {"company":"Western University",
-            "title" : "Programming Peer tutor",
-            "logo":"./static/img/western.jpg",
-            "date":"September 2021 - Present",
-            "description":"Worked as a programming peer tutor at Western University. Learned skills in Java, Python, and C++."},
-
+        {"company":"Commit the Change",
+            "title" : "Full-Stack Developer",
+            "logo":"./static/img/experienceImages/ctc_logo.png",
+            "date": "October 2021 - Present",
+            "description":"Contributed to 3 full-stack projects dedicated to nonprofits using React, JavaScript, and Postgres."},
     ]
     return render_template('index.html',title="MLH Fellow", titleEdu="Education", education_data=education_data, titleExp="Experience" ,  experience=experience_data, url=os.getenv("URL"))
 
