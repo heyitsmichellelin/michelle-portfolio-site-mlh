@@ -4,9 +4,6 @@ cd portfolio-site-mlh/
 
 git fetch && git reset origin/main --hard
 
-source python3-virtualenv/bin/activate
+docker compose -f docker-compose.prod.yml down
 
-pip install -r requirements.txt
-
-systemctl start myportfolio
-systemctl enable myportfolio
+docker compose -f docker-compose.prod.yml up -d --build
