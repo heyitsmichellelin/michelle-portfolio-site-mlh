@@ -21,12 +21,17 @@ jobs:
           chmod 600 ~/.ssh/deploy-key.pem
       - name: Check files
         run: ls ~/.ssh/
-
-      - name: Do cat
+      
+      - name: Check for config file
         run: 
           if [ ! -f ~/.ssh/config ]; then
-            touch ~/.ssh/config
+            touch ~/.ssh/config;
+            echo "made config";
+            ls ~/.ssh;
           fi
+          
+      - name: Do cat
+        run: 
           cat >> ~/.ssh/config <<END
           Host my-vps
             HostName $SSH_IP
