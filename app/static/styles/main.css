@@ -287,6 +287,6 @@ td {
     align-self: center;
 }
 
-img {
-    border-radius: 20%;
+.details>div>img {
+    border-radius: 20%
 }
