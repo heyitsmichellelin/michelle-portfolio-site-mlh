@@ -17,7 +17,7 @@ class AppTestCase(unittest.TestCase):
         assert '<title>MLH Fellow</title>' in html
 
         # Tests relating to the home page
-        assert '<h1>MLH Fellow </h1>' in html
+        assert '<h1>Michelle Lin</h1>' in html
         assert '<img src="./static/img/logo.svg" />' in html
 
         # Ensure that the links in the navigation bar are present
