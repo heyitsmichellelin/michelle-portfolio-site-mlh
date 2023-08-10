@@ -4,7 +4,6 @@ from flask import Flask, render_template, request, json
 from peewee import *
 from playhouse.shortcuts import model_to_dict
 import datetime
-import jsonify
 
 from dotenv import load_dotenv
 
@@ -43,9 +42,9 @@ mydb.create_tables([TimelinePost])
 @app.route('/')
 def index():
     education_data =[
-        {"school": "Western University",
-         "year": "2021-2025",
-         "img": "./static/img/western.jpg"
+        {"school": "Minerva University",
+         "year": "2022-2026",
+         "img": "./static/img/minerva.png"
         },
         {"school": "Ivey Business School",
          "year": "2023-2025",
