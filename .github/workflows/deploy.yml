@@ -11,13 +11,16 @@ jobs:
     name: "Deploy to VPS"
     runs-on: ubuntu-latest
     steps:
-      - name: Configure SSH
-        run: 
-          mkdir -p ~/.ssh/
-          cd ~/.ssh/
-          ls
+      - name: Make SSH dir
+        run: mkdir -p ~/.ssh/
+      - name: List dir
+        run: ls ~/.ssh/
+      - name: Priv key
+        run:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy-key.pem
           chmod 600 ~/.ssh/deploy-key.pem
+      - name: Do cat
+        run: 
           cat >> ~/.ssh/config <<END
           Host my-vps
             HostName $SSH_IP
