@@ -19,6 +19,9 @@ jobs:
         run:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy-key.pem
           chmod 600 ~/.ssh/deploy-key.pem
+      - name: Check files
+        run: ls ~/.ssh/
+        
       - name: Do cat
         run: 
           cat >> ~/.ssh/config <<END
